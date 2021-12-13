@@ -1,5 +1,6 @@
 package com.example.housing_rental_management_system.Controller;
 
+import com.example.housing_rental_management_system.Dao.HouseRepository;
 import com.example.housing_rental_management_system.Pojo.AjaxResult;
 import com.example.housing_rental_management_system.Pojo.MyUser;
 import com.example.housing_rental_management_system.Service.UserService;
@@ -9,10 +10,7 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.DenyAll;
 import javax.annotation.security.PermitAll;
@@ -31,16 +29,19 @@ public class AdminController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    HouseRepository houseRepository;
     @PostMapping("addAdmin")
     public AjaxResult addAdmin (@RequestBody MyUser user){
-
-
         if (userService.addAdmin(user)) {
             return AjaxResult.success();
         }else{
             return AjaxResult.error("用户名重复");
         }
-
+    }
+    @GetMapping("getHouses")
+    public AjaxResult getHouses(){
+        return null;
     }
     @PermitAll
     @PostMapping("init")

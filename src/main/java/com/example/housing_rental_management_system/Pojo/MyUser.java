@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 //@ApiModel(value ="管理员")
-public class MyUser {
+public class MyUser extends EntityTimes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -24,10 +24,7 @@ public class MyUser {
     //权限
     String authorities;
 
-    @CreationTimestamp
-    Timestamp createTime;
-    @UpdateTimestamp
-    Timestamp updateTime;
+
 
 
 }
