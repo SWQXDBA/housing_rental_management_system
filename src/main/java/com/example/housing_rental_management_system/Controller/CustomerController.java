@@ -20,7 +20,6 @@ import javax.annotation.security.RolesAllowed;
 
 @RestController
 @RequestMapping("customer")
-@RolesAllowed("ROLE_admin")
 public class CustomerController{
     @Autowired
     UserService userService;
@@ -33,6 +32,11 @@ public class CustomerController{
     @Autowired
     RentalInfoRepository rentalInfoRepository;
 
+    /**
+     * 同时注册一个customer和MyUser进去
+     * @param user
+     * @return
+     */
     @PermitAll
     @PostMapping("add")
     public AjaxResult add (@RequestBody AddCustomerRequestViewModel user){
