@@ -10,7 +10,7 @@ import java.sql.Timestamp;
 @Data
 @Entity
 //@ApiModel(value ="管理员")
-public class AdminUser {
+public class MyUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -21,15 +21,13 @@ public class AdminUser {
     String password;
 
 
-
+    //权限
+    String authorities;
 
     @CreationTimestamp
     Timestamp createTime;
     @UpdateTimestamp
     Timestamp updateTime;
 
-    @Override
-    public String toString() {
-        return userName;
-    }
+
 }

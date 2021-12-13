@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 @Component
-public class AdminAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class UserAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
      ObjectMapper mapper = new ObjectMapper();
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {

@@ -1,22 +1,28 @@
 package com.example.housing_rental_management_system.Configs;
 
-import com.example.housing_rental_management_system.SecurityHandler.AdminAuthenticationFailureHandler;
-import com.example.housing_rental_management_system.SecurityHandler.AdminAuthenticationSuccessHandler;
+import com.example.housing_rental_management_system.SecurityHandler.UserAuthenticationFailureHandler;
+import com.example.housing_rental_management_system.SecurityHandler.UserAuthenticationSuccessHandler;
+import com.example.housing_rental_management_system.Service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    AdminAuthenticationFailureHandler failureHandler;
+    UserAuthenticationFailureHandler failureHandler;
     @Autowired
-    AdminAuthenticationSuccessHandler successHandler;
+    UserAuthenticationSuccessHandler successHandler;
+    @Autowired
+    UserServiceImpl service;
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(service);
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -33,9 +39,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 
 }
