@@ -14,6 +14,8 @@ public class RentalInfo extends EntityTimes{
 
     @OneToOne
     Customer customer;
+    @OneToOne
+    House house;
     Timestamp rentStartTime;
     Timestamp rentEndTime;
 

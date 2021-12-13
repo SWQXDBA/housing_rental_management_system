@@ -23,14 +23,10 @@ public class CodeGenner {
     }
 
     public static void main(String[] args) {
-        CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
-        genner.repositoryDirectory("Dao")
+     /*   CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
+        genner
                 .addPojo("House")
-
-                .addPojo("RentalInfo")
-                    .setController(false)
-
-                .start();
+                .start();*/
 
     }
 

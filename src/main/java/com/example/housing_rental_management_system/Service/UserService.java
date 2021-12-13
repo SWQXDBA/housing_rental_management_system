@@ -24,5 +24,16 @@ public class UserService {
         userRepository.save(newUser);
         return true;
     }
-
+    public boolean addCustomer(MyUser user){
+        MyUser us = userRepository.getUserByUserName(user.getUserName());
+        if(us!=null){
+            return false;
+        }
+        MyUser newUser = new MyUser();
+        newUser.setUserName(user.getUserName());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setAuthorities("ROLE_customer");
+        userRepository.save(newUser);
+        return true;
+    }
 }

@@ -39,10 +39,7 @@ public class AdminController {
             return AjaxResult.error("用户名重复");
         }
     }
-    @GetMapping("getHouses")
-    public AjaxResult getHouses(){
-        return null;
-    }
+
     @PermitAll
     @PostMapping("init")
     public AjaxResult init (@RequestBody MyUser user){
