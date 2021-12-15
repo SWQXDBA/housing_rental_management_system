@@ -23,26 +23,30 @@ public class CodeGenner {
     }
 
     public static void main(String[] args) {
-     /*   CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
-        genner
-                .addPojo("House")
-                .start();*/
+        CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA2\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
+        genner.repositoryDirectory("Dao")
+                .addPojo("ChargeInfo")
+                .start();
 
     }
 
     Pojo target;
     List<Pojo> pojos = new ArrayList<>();
 
-    public String rootPath;
-    public String controllerDirectory = "Controller";
-    public String repositoryDirectory = "Repository";
-    public String serviceDirectory = "Service";
-    public String pojoDirectory = "Pojo";
-
+     String rootPath;
+     String controllerDirectory = "Controller";
+     String repositoryDirectory = "Repository";
+     String serviceDirectory = "Service";
+     String pojoDirectory = "Pojo";
+    public String packageName = this.getClass().getPackage().getName();
     public CodeGenner(String rootPath) {
         this.rootPath = rootPath;
     }
 
+    public CodeGenner setPackageName(String name) {
+        packageName = name;
+        return this;
+    }
     public CodeGenner controllerDirectory(String name) {
         controllerDirectory = name;
         return this;
@@ -126,7 +130,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + controllerDirectory + ";\n" +
+                        writer.write("package "+packageName+"." + controllerDirectory + ";\n" +
                                 "\n" +
                                 "public class " + pojo.name + "Controller{\n" +
                                 "    \n" +
@@ -141,7 +145,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + repositoryDirectory + ";\n" +
+                        writer.write("package " +packageName+"."+ repositoryDirectory + ";\n" +
                                 "\n" +
                                 "@Repository\n" +
                                 "public interface " + pojo.name + "Repository{\n" +
@@ -157,7 +161,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + serviceDirectory + ";\n" +
+                        writer.write("package "+packageName+"." + serviceDirectory + ";\n" +
                                 "\n" +
                                 "@Service\n" +
                                 "public class " + pojo.name + "Service{\n" +
@@ -173,7 +177,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + pojoDirectory + ";\n" +
+                        writer.write("package "+packageName+"." + pojoDirectory + ";\n" +
                                 "\n" +
                                 "@Entity\n" +
                                 "public class " + pojo.name + "{\n" +

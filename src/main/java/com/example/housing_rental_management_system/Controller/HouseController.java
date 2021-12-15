@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("house")
-@PermitAll
+
 public class HouseController{
     @Autowired
     UserService userService;
@@ -51,8 +51,19 @@ public class HouseController{
         return AjaxResult.success(houses);
     }
 
+    @PermitAll
     @GetMapping("getAll" )
     public AjaxResult getAll(){
         return AjaxResult.success(houseRepository.findAll());
+    }
+
+    /**
+     *  查询所有未出租满的房源
+     * @return
+     */
+    @PermitAll
+    @GetMapping("getAllUnRented" )
+    public AjaxResult getAllUnRented(){
+        return AjaxResult.success(houseRepository.getHousesUnRent());
     }
 }

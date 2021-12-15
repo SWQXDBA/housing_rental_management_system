@@ -35,6 +35,11 @@ public class RentalInfoController{
     RentalInfoRepository rentalInfoRepository;
 
 
+    /**
+     * 新增一条入住登记
+     * @param info
+     * @return
+     */
     @RolesAllowed("ROLE_admin")
     @PostMapping("add" )
     public AjaxResult add(@RequestBody AddRentalInfoRequestViewModel info){
