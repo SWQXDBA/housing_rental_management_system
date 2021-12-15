@@ -23,10 +23,10 @@ public class CodeGenner {
     }
 
     public static void main(String[] args) {
-     /*   CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
-        genner
-                .addPojo("House")
-                .start();*/
+        CodeGenner genner = new CodeGenner("C:\\Users\\SWQXDBA2\\IdeaProjects\\housing_rental_management_system\\src\\main\\java\\com\\example\\housing_rental_management_system");
+        genner.repositoryDirectory("Dao")
+                .addPojo("ChargeInfo")
+                .start();
 
     }
 
@@ -126,7 +126,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + controllerDirectory + ";\n" +
+                        writer.write("package "+this.getClass().getPackage().getName()+"." + controllerDirectory + ";\n" +
                                 "\n" +
                                 "public class " + pojo.name + "Controller{\n" +
                                 "    \n" +
@@ -141,7 +141,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + repositoryDirectory + ";\n" +
+                        writer.write("package " +this.getClass().getPackage().getName()+"."+ repositoryDirectory + ";\n" +
                                 "\n" +
                                 "@Repository\n" +
                                 "public interface " + pojo.name + "Repository{\n" +
@@ -157,7 +157,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + serviceDirectory + ";\n" +
+                        writer.write("package "+this.getClass().getPackage().getName()+"." + serviceDirectory + ";\n" +
                                 "\n" +
                                 "@Service\n" +
                                 "public class " + pojo.name + "Service{\n" +
@@ -173,7 +173,7 @@ public class CodeGenner {
                     if (!Files.exists(path)) {
                         Files.createFile(path);
                         FileWriter writer = new FileWriter(String.valueOf(path));
-                        writer.write("package " + pojoDirectory + ";\n" +
+                        writer.write("package "+this.getClass().getPackage().getName()+"." + pojoDirectory + ";\n" +
                                 "\n" +
                                 "@Entity\n" +
                                 "public class " + pojo.name + "{\n" +

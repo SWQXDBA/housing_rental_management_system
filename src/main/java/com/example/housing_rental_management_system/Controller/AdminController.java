@@ -4,7 +4,7 @@ import com.example.housing_rental_management_system.Dao.HouseRepository;
 import com.example.housing_rental_management_system.Pojo.AjaxResult;
 import com.example.housing_rental_management_system.Pojo.MyUser;
 import com.example.housing_rental_management_system.Service.UserService;
-import com.sun.xml.internal.ws.util.StringUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
