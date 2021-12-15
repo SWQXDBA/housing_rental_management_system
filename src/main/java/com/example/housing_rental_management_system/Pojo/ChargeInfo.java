@@ -29,7 +29,9 @@ public class ChargeInfo extends EntityTimes{
     ChargeType type;
     Timestamp chargeTime;
     int money;
-    @OneToOne
+    @ManyToOne
     Customer customer;
+    @ManyToOne
+    House house;
 }
 

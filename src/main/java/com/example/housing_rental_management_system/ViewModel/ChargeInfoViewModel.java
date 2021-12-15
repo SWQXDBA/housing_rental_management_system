@@ -16,4 +16,5 @@ public class ChargeInfoViewModel {
     Timestamp chargeTime;
     int money;
     String customerIdCode;
+    Long houseId;
 }
