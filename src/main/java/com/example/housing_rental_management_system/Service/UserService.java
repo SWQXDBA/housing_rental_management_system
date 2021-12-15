@@ -12,27 +12,23 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     @Autowired
     MyUserRepository userRepository;
-    public boolean addAdmin(MyUser user){
-        MyUser us = userRepository.getUserByUserName(user.getUserName());
-        if(us!=null){
-            return false;
-        }
-        MyUser newUser = new MyUser();
-        newUser.setUserName(user.getUserName());
-        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        newUser.setAuthorities("ROLE_admin ROLE_customer");
-        userRepository.save(newUser);
-        return true;
+
+    public boolean addAdmin(MyUser user) {
+        return add(user, "ROLE_admin ROLE_customer");
     }
-    public boolean addCustomer(MyUser user){
-        MyUser us = userRepository.getUserByUserName(user.getUserName());
-        if(us!=null){
+
+    public boolean addCustomer(MyUser user) {
+        return add(user, "ROLE_customer");
+    }
+
+    private boolean add(MyUser user, String authorities) {
+        if (userRepository.existsByUserName(user.getUserName())) {
             return false;
         }
         MyUser newUser = new MyUser();
         newUser.setUserName(user.getUserName());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
-        newUser.setAuthorities("ROLE_customer");
+        newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         return true;
     }

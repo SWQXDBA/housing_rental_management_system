@@ -24,13 +24,14 @@ import java.security.Principal;
 */
 @RestController
 @RequestMapping("admin")
-@RolesAllowed("ROLE_admin")
+
 public class AdminController {
 
     @Autowired
     UserService userService;
     @Autowired
     HouseRepository houseRepository;
+    @RolesAllowed("ROLE_admin")
     @PostMapping("addAdmin")
     public AjaxResult addAdmin (@RequestBody MyUser user){
         if (userService.addAdmin(user)) {
