@@ -15,4 +15,6 @@ public interface HouseRepository extends CrudRepository<House, Long> {
 @Query("select r.house from RentalInfo r where r.rentEndTime > current_timestamp group by r.house having  " +
         " count (r.house )< r.house.capacity")
     List<House> getHousesUnRent();
+
+
 }

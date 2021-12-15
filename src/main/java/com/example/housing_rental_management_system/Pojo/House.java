@@ -2,10 +2,9 @@ package com.example.housing_rental_management_system.Pojo;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
@@ -24,6 +23,8 @@ public class House extends EntityTimes {
 
     //每个月每个人的租金
     int cost;
+
+
 
 
 }
