@@ -124,6 +124,7 @@ public class CodeGenner {
 
             }
 
+
             for (Pojo pojo : pojos) {
                 if (pojo.controller) {
                     Path path = Paths.get(con + "\\" + pojo.name + "Controller.java");

@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/housting
     username: root
-    password: root
+    password: q12345
   jackson:
     #配置时间格式化 前端传过来的时候根据这个格式timestamp
     time-zone: GMT+8

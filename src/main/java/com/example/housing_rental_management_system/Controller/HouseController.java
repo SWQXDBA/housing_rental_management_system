@@ -1,12 +1,14 @@
 package com.example.housing_rental_management_system.Controller;
 
+import com.example.housing_rental_management_system.Dao.CustomerRepository;
 import com.example.housing_rental_management_system.Dao.HouseRepository;
 import com.example.housing_rental_management_system.Dao.MyUserRepository;
-import com.example.housing_rental_management_system.Pojo.*;
-import com.example.housing_rental_management_system.Dao.CustomerRepository;
 import com.example.housing_rental_management_system.Dao.RentalInfoRepository;
+import com.example.housing_rental_management_system.Pojo.*;
 import com.example.housing_rental_management_system.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +40,25 @@ public class HouseController{
         houseRepository.save(house);
         return AjaxResult.success();
     }
-    @RolesAllowed("ROLE_customer")
+
+    /**
+     * 如果pageNumber = 1,pageSize  = 2 则返回 3 4
+     * 如果pageNumber = 0,pageSize  = 3 则返回 1 2 3
+     * @param pageNumber 第几页 从0开始
+     * @param pageSize 每一页由多少条数据
+     * @return
+     */
+    @PermitAll
+    @GetMapping("getAllPage" )
+    public AjaxResult getAllPage(int pageNumber,int pageSize) {
+
+        Page<House> page = houseRepository.findAll(PageRequest.of(pageNumber, pageSize));
+        return AjaxResult.success(page.get().collect(Collectors.toList()));
+
+
+    }
+
+        @RolesAllowed("ROLE_customer")
     @GetMapping("getMyHouses" )
    public AjaxResult getMyHouses(@AuthenticationPrincipal UserDetails userDetail){
 
