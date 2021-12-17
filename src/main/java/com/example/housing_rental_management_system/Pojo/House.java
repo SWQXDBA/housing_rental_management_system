@@ -25,6 +25,15 @@ public class House extends EntityTimes {
     int cost;
 
 
+    public House(String name, String location, float area, int capacity, int cost) {
+        this.name = name;
+        this.location = location;
+        this.area = area;
+        this.capacity = capacity;
+        this.cost = cost;
+    }
 
+    public House() {
 
+    }
 }

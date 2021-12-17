@@ -6,7 +6,11 @@ import com.example.housing_rental_management_system.Dao.MyUserRepository;
 import com.example.housing_rental_management_system.Dao.RentalInfoRepository;
 import com.example.housing_rental_management_system.Pojo.*;
 import com.example.housing_rental_management_system.Service.UserService;
+import com.example.housing_rental_management_system.ViewModel.HouseViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -34,10 +38,12 @@ public class HouseController{
     @Autowired
     RentalInfoRepository rentalInfoRepository;
 
-    @RolesAllowed("ROLE_admin")
+    @CacheEvict(cacheNames = "House",key = "'allHouse'")
+   // @RolesAllowed("ROLE_admin")
+    @PermitAll
     @PostMapping("add" )
-    public AjaxResult add(@RequestBody House house){
-        houseRepository.save(house);
+    public AjaxResult add(@RequestBody HouseViewModel viewModel){
+        houseRepository.save(viewModel.getEntity());
         return AjaxResult.success();
     }
 
@@ -58,7 +64,7 @@ public class HouseController{
 
     }
 
-        @RolesAllowed("ROLE_customer")
+    @RolesAllowed("ROLE_customer")
     @GetMapping("getMyHouses" )
    public AjaxResult getMyHouses(@AuthenticationPrincipal UserDetails userDetail){
 
@@ -71,6 +77,7 @@ public class HouseController{
         return AjaxResult.success(houses);
     }
 
+    @Cacheable(cacheNames = "House",key = "'allHouse'")
     @PermitAll
     @GetMapping("getAll" )
     public AjaxResult getAll(){
