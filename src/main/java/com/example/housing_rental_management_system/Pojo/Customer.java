@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Data
-public class Customer extends  EntityTimes{
+public class Customer extends EntityBase {
     @Id
     String idCode;
     String name;

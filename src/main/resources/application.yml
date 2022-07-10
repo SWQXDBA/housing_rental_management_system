@@ -1,5 +1,8 @@
 server:
-  port: 8998
+  port: 8080
+  tomcat:
+    threads:
+      max: 800
 spring:
   jpa:
     hibernate:
@@ -15,6 +18,5 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
 
 
-debug: true
 
 

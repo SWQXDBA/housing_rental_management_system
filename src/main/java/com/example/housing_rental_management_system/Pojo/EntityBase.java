@@ -5,12 +5,15 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+
 @MappedSuperclass
-public class EntityTimes {
-
-
+public class EntityBase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    Long id;
     @CreationTimestamp
-    Timestamp createTime;
+    LocalDateTime createTime;
     @UpdateTimestamp
-    Timestamp updateTime;
+    LocalDateTime updateTime;
 }

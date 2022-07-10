@@ -2,7 +2,6 @@ package com.example.housing_rental_management_system.Pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -10,7 +9,7 @@ import java.sql.Timestamp;
 @Entity
 @AllArgsConstructor
 
-public class ChargeInfo extends EntityTimes{
+public class ChargeInfo extends EntityBase {
     @Id
 
     Long id;

@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 
 @SpringBootApplication
 @EnableGlobalMethodSecurity(jsr250Enabled = true)
-@EnableCaching
+@EnableCaching()
 public class HousingRentalManagementSystemApplication {
 
     public static void main(String[] args) {

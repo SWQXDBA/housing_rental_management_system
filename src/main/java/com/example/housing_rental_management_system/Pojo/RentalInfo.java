@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Entity
 @Data
-public class RentalInfo extends EntityTimes{
+public class RentalInfo extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

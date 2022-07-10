@@ -3,12 +3,10 @@ package com.example.housing_rental_management_system.Pojo;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
-public class House extends EntityTimes {
+public class House extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

@@ -1,16 +1,16 @@
 package com.example.housing_rental_management_system.Pojo;
 
 import lombok.Data;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
+
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 @Data
 @Entity
 //@ApiModel(value ="管理员")
-public class MyUser extends EntityTimes {
+public class MyUser extends EntityBase {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
